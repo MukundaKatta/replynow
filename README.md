@@ -1,22 +1,47 @@
 # ReplyNow
 
-> Every Google review, answered overnight.
+Every Google review, answered overnight.
 
-We draft a response to every review — 5 star and 1 star — in your voice. You approve in bulk each morning.
+**Status:** v0 skeleton — landing page + review-reply demo route. Full AI not yet wired.
 
-## What you get
+**Landing:** https://replynow.vercel.app
 
-- **Five-star replies that drive more** — Warm, specific, not robotic. Each reply invites them back.
-- **One-star, handled with care** — De-escalating language. Offer to make it right. We never admit fault without your sign-off.
-- **SEO-tuned** — Replies that help your local search ranking. Your review rating climbs with them.
+---
 
-## Category
+## Stack
 
-Small business. Part of a 50-product exploration of high-demand consumer and SMB markets.
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind v4 |
+| Fonts | Inter via `next/font/google` |
+| Hosting | Vercel (zero config) |
+| Waitlist | https://waitlist-api-sigma.vercel.app |
 
-## Status
+## Run locally
 
-Landing page live with interactive demo and functional waitlist.
+```bash
+pnpm install
+pnpm dev
+```
 
-- **Live:** https://mukundakatta.github.io/replynow/
-- **Waitlist API:** https://waitlist-api-sigma.vercel.app/api/waitlist
+Open http://localhost:3000.
+
+## Deploy
+
+Push to `main` — Vercel picks it up automatically. No environment variables required.
+
+## Routes
+
+| Route | Description |
+|---|---|
+| `/` | Landing page (original copy + design preserved) |
+| `/try` | Paste a Google review → 3 mocked response drafts (warm, professional, apology-if-negative) |
+| `/api/waitlist` | `POST { email, product: "replynow" }` → forwards to waitlist-api-sigma |
+
+## What's next
+
+- Wire real AI (review reply generation) behind `/try`
+- Connect Google Business Profile API for automatic review monitoring
+- Auth + per-business dashboard
